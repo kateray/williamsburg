@@ -6,3 +6,4 @@
 - post UserPoints endpoint (with authentication)
 - check to make sure user_points are not an outlier
 - set up cron task to update cities nightly
+- deploy
