@@ -6,8 +6,8 @@ class UserPinsController < ApplicationController
 		@city = City.find_or_create_by(name: name)
 
 		@pin = UserPin.new
-		@pin.latitude = params[:lt].to_i
-		@pin.longitude = params[:lg].to_i
+		@pin.latitude = params[:lt].to_f
+		@pin.longitude = params[:lg].to_f
 		@pin.city_id = @city.id
 
 		if @pin.save
