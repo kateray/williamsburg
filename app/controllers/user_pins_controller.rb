@@ -8,6 +8,7 @@ class UserPinsController < ApplicationController
 		@pin = UserPin.new
 		@pin.latitude = params[:lt].to_f
 		@pin.longitude = params[:lg].to_f
+		@pin.neighborhood = params[:n].downcase
 		@pin.city_id = @city.id
 
 		if @pin.save
