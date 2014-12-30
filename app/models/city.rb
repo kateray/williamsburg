@@ -29,7 +29,7 @@ class City < ActiveRecord::Base
 			end
 		#City only has user pins, so give an average
 		elsif self.user_pins.any?
-			#TODO: calculate neighborhood
+			new_neighborhood = self.user_pins.first.neighborhood
 			new_lat = self.average_lat
 			new_long = self.average_long
 		end
