@@ -11,9 +11,8 @@ class UserPinsController < ApplicationController
 		@pin.neighborhood = params[:n].downcase
 		@pin.city_id = @city.id
 
-		@city.calculate_location
-
 		if @pin.save
+			@city.calculate_location
 			render json: {id: @pin.id}
 		end
 	end
