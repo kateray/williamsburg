@@ -2,11 +2,13 @@ class UserPinsController < ApplicationController
 
 	def add
 		#TODO authentication
-		#TODO what if there is no city?
+		name = params[:c].downcase
+		@city = City.find_or_create_by(name: name)
+
 		@pin = UserPin.new
-		@pin.latitude = params[:lat].to_i
-		@pin.longitude = params[:long].to_i
-		@pin.city_id = params[:w].to_i
+		@pin.latitude = params[:lt].to_i
+		@pin.longitude = params[:lg].to_i
+		@pin.city_id = @city.id
 
 		if @pin.save
 			render json: {id: @pin.id}
