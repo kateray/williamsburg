@@ -4,6 +4,7 @@ class UserPinsController < ApplicationController
 		#Authentication
 		if params[:aid] != ENV["APP_ID"]
 			render :json => {error: "Unauthenticated request"}, :status => :unprocessable_entity
+			return false
 		end
 
 		device_id = params[:did]
@@ -21,6 +22,7 @@ class UserPinsController < ApplicationController
 			head :ok
 		else
 			render :json => {error: "Unable to save"}, :status => :unprocessable_entity
+			return false
 		end
 	end
 
