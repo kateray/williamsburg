@@ -1,11 +1,15 @@
 class UserPinsController < ApplicationController
 
 	def add
-		#TODO authentication
+		#Authentication
+		if params[:aid] != ENV["APP_ID"]
+			return false
+		end
+
+		device_id = params[:did]
 		name = params[:c].downcase
 		@city = City.find_or_create_by(name: name)
-
-		@pin = UserPin.new
+		@pin = UserPin.find_or_create_by(token: device_id)
 		@pin.latitude = params[:lt].to_f
 		@pin.longitude = params[:lg].to_f
 		@pin.neighborhood = params[:n].downcase
