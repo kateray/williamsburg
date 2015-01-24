@@ -1,5 +1,9 @@
 ## Where is Williamsburg?
 
+- rake db:seed
+- rake update_cities
+- rake geocode:all CLASS=City
+
 ## Todo
 
 - make homepage
