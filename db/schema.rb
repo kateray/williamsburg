@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141222175415) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
+    t.string   "address"
     t.string   "neighborhood"
     t.float    "latitude"
     t.float    "longitude"

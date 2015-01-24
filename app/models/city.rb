@@ -2,6 +2,7 @@ class City < ActiveRecord::Base
 	has_one :admin_pin
 	has_many :user_pins
 
+	geocoded_by :address
 
 	def average_lat
 		UserPin.where(city_id: self.id).average(:latitude)
