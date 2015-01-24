@@ -2,8 +2,7 @@ class UserPinsController < ApplicationController
 
 	def add
 		#Authentication
-		if !params[:aid] || params[:aid] != '1413358A-9CE6-4E27-A142-4A2AE4AF20A2'
-		# if params[:aid] != ENV["APP_ID"]
+		if params[:aid] != ENV["APP_ID"]
 			render :json => {error: "Unauthenticated request"}, :status => :unprocessable_entity
 			return false
 		end
