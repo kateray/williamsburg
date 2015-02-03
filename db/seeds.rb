@@ -17,6 +17,10 @@ City.create(name: 'Los Angeles')
 City.create(name: 'Madrid')
 City.create(name: 'Saint Louis')
 City.create(name: 'Washington DC')
+City.create(name: 'Austin')
+City.create(name: 'Denver')
+City.create(name: 'Mexico City')
+City.create(name: 'Sydney')
 
 
 AdminPin.create(city_id: 1, neighborhood: 'Williamsburg', latitude: 40.7133, longitude: -73.9533)
@@ -31,3 +35,7 @@ AdminPin.create(city_id: 9, neighborhood: 'Silver Lake', latitude: 34.0944, long
 AdminPin.create(city_id: 10, neighborhood: 'Malasaña', latitude: 40.4253, longitude: 3.7083)
 AdminPin.create(city_id: 11, neighborhood: 'The Grove', latitude: 38.6270, longitude: -90.2569)
 AdminPin.create(city_id: 12, neighborhood: 'U Street', latitude: 38.9170, longitude: -77.0296)
+AdminPin.create(city_id: 13, neighborhood: 'South Congress', latitude: 30.2500, longitude: -97.7500)
+AdminPin.create(city_id: 14, neighborhood: 'Highlands', latitude: 39.7620, longitude: -105.0112)
+AdminPin.create(city_id: 15, neighborhood: 'Roma Norte', latitude: 19.4164, longitude: -99.1617)
+AdminPin.create(city_id: 16, neighborhood: 'Surry Hills', latitude: -33.8861, longitude: 151.2111)
