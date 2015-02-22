@@ -47,6 +47,6 @@ class City < ActiveRecord::Base
 	end
 
 	def as_json(options={})
-		{ neighborhood: self.neighborhood, latitude: self.latitude, longitude: self.longitude }
+		{ neighborhood: self.neighborhood, latitude: self.latitude, longitude: self.longitude, city: self.name }
 	end
 end

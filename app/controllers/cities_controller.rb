@@ -15,4 +15,8 @@ class CitiesController < ApplicationController
 			#alert me
 		end
 	end
+
+	def get_all
+		render json: City.all
+	end
 end
