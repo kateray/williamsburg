@@ -5,6 +5,7 @@
 - rake geocode:all CLASS=City
 
 - heroku pg:reset DATABASE
+- heroku run rake db:migrate
 - heroku run rake db:seed
 - heroku run rake update_cities
 - heroku run rake geocode:all CLASS=City

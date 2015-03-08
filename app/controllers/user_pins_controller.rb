@@ -12,12 +12,11 @@ class UserPinsController < ApplicationController
 		long = params[:lg].to_f
 
 		@city = City.near([lat, long], 50).first
-
-		if @city == nil
-			result = Geocoder.search(lat.to_s + ',' + long.to_s).first
-			if result && result.city
-				@city = City.create(name: result.city, latitude: lat, longitude: long)
-				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id)
+		if @city.blank?
+			result = Geocoder.search(lat.to_s + ',' + long.to_s, :params => {"inclnb" => 1}).first
+			if result && result.city && result.data['address']
+				@city = City.create(name: result.city, latitude: lat, longitude: long, neighborhood: result.data['address']['neighborhood'])
+				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id, neighborhood: result.data['address']['neighborhood'])
 				head :ok
 			else
 				render json: {error: "Unable to save"}, :status => :unprocessable_entity
@@ -28,6 +27,7 @@ class UserPinsController < ApplicationController
 			@pin.latitude = lat
 			@pin.longitude = long
 			@pin.city_id = @city.id
+
 
 			if @pin.save
 				@city.calculate_location

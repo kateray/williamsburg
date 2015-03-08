@@ -56,7 +56,7 @@ AdminPin.create(city_id: 19, neighborhood: 'Gulou', latitude: 39.9402, longitude
 AdminPin.create(city_id: 20, neighborhood: 'Palermo Soho', latitude: -34.5889, longitude: -58.4306)
 AdminPin.create(city_id: 21, neighborhood: 'Arbour Lake', latitude: 51.1333, longitude: -114.2044)
 AdminPin.create(city_id: 22, neighborhood: 'Woodstock', latitude: -33.929371, longitude: 18.448931)
-AdminPin.create(city_id: 23, neighborhood: 'Corktown', latitude: 43.6555, longitude: -79.3597)
+AdminPin.create(city_id: 23, neighborhood: 'Corktown', latitude: 42.329934, longitude: -83.065899)
 AdminPin.create(city_id: 24, neighborhood: 'Garneau', latitude: 53.5200, longitude: -113.5140)
 AdminPin.create(city_id: 25, neighborhood: 'Wynwood', latitude: 25.8006, longitude: -80.1990)
 AdminPin.create(city_id: 26, neighborhood: 'Streetsville', latitude: 43.5867, longitude: -79.7214)
