@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.5'
 gem 'rails_admin'
+gem 'newrelic_rpm'
 
 gem 'geocoder'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
