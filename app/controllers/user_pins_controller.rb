@@ -13,7 +13,7 @@ class UserPinsController < ApplicationController
 
 		@city = City.near([lat, long], 50).first
 		if @city.blank?
-			result = Geocoder.search(lat.to_s + ',' + long.to_s, :params => {"inclnb" => 1}).first
+			result = Geocoder.search(lat.to_s + ',' + long.to_s, :params => {"inclnb" => 1, "IncludeEntityTypes"=>"Neighborhood"}).first
 			if result && result.city && result.data['address']
 				@city = City.create(name: result.city, latitude: lat, longitude: long, neighborhood: result.data['address']['neighborhood'])
 				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id, neighborhood: result.data['address']['neighborhood'])

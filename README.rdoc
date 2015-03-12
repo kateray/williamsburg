@@ -13,7 +13,10 @@
 ## Todo
 
 - make homepage
-- post UserPoints endpoint (with authentication)
 - check to make sure user_points are not an outlier
-- set up cron task to update cities nightly
-- deploy
+
+App
+- have load screen have all elements
+- feedback when you press save
+- saving didn't save neighborhood
+- most of the foursquare links are no good (too specific, and still not searching for neighborhood correctly)
