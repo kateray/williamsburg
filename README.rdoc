@@ -17,6 +17,6 @@
 
 App
 - have load screen have all elements
-- feedback when you press save
-- saving didn't save neighborhood
 - most of the foursquare links are no good (too specific, and still not searching for neighborhood correctly)
+- landscape view
+- handle if it really can't find the neighborhood

@@ -12,26 +12,40 @@ class UserPinsController < ApplicationController
 		long = params[:lg].to_f
 
 		@city = City.near([lat, long], 50).first
-		if @city.blank?
-			result = Geocoder.search(lat.to_s + ',' + long.to_s, :params => {"inclnb" => 1, "IncludeEntityTypes"=>"Neighborhood"}).first
-			if result && result.city && result.data['address']
-				@city = City.create(name: result.city, latitude: lat, longitude: long, neighborhood: result.data['address']['neighborhood'])
-				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id, neighborhood: result.data['address']['neighborhood'])
+
+		result = Geocoder.search(lat.to_s + ',' + long.to_s, :params => {"inclnb" => 1, "IncludeEntityTypes"=>"Neighborhood"}).first
+
+		if result && result.city && result.data['address']
+			city = result.city
+			neighborhood = result.data['address']['neighborhood'])
+		end
+
+		if @city
+			@pin = @city.user_pins.find_by_token(device_id) || UserPin.create(token: device_id, city_id: @city.id)
+			if neighborhood
+				@pin.neighborhood = neighborhood
+			end
+			@pin.latitude = lat
+			@pin.longitude = long
+
+			if @pin.save
+				@city.calculate_location
 				head :ok
 			else
 				render json: {error: "Unable to save"}, :status => :unprocessable_entity
 				return false
 			end
+
 		else
-			@pin = @city.user_pins.find_by_token(device_id) || UserPin.create(token: device_id)
-			@pin.latitude = lat
-			@pin.longitude = long
-			@pin.city_id = @city.id
-
-
-			if @pin.save
-				@city.calculate_location
-				head :ok
+			if city && neighborhood
+				@city = City.create(name: city, latitude: lat, longitude: long, neighborhood: neighborhood)
+				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id, neighborhood: neighborhood)
+				if @pin.save
+					head :ok
+				else
+					render json: {error: "Unable to save"}, :status => :unprocessable_entity
+					return false
+				end
 			else
 				render json: {error: "Unable to save"}, :status => :unprocessable_entity
 				return false

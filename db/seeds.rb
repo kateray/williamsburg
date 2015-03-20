@@ -32,6 +32,9 @@ City.create(name: 'Toronto')
 City.create(name: 'Vancouver')
 City.create(name: 'Winnipeg')
 City.create(name: 'Jersey City')
+City.create(name: 'Houston')
+City.create(name: 'Minneapolis')
+City.create(name: 'Philadelphia')
 
 
 AdminPin.create(city_id: 1, neighborhood: 'Williamsburg', latitude: 40.7133, longitude: -73.9533)
@@ -68,3 +71,6 @@ AdminPin.create(city_id: 31, neighborhood: 'Leslieville', latitude: 43.6619, lon
 AdminPin.create(city_id: 32, neighborhood: 'Gastown', latitude: 49.2847, longitude: -123.1110)
 AdminPin.create(city_id: 33, neighborhood: 'West Broadway', latitude: 49.883620, longitude: -97.156681)
 AdminPin.create(city_id: 34, neighborhood: 'The Village', latitude: 40.7338, longitude: -74.0442)
+AdminPin.create(city_id: 35, neighborhood: 'Montrose', latitude: 29.7400, longitude: -95.3910)
+AdminPin.create(city_id: 36, neighborhood: 'Downtown West', latitude: 44.9741, longitude: -93.2732)
+AdminPin.create(city_id: 37, neighborhood: 'Fishtown', latitude: 39.9650, longitude: -75.1356)
