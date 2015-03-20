@@ -17,7 +17,7 @@ class UserPinsController < ApplicationController
 
 		if result && result.city && result.data['address']
 			city = result.city
-			neighborhood = result.data['address']['neighborhood'])
+			neighborhood = result.data['address']['neighborhood']
 		end
 
 		if @city
@@ -52,6 +52,7 @@ class UserPinsController < ApplicationController
 			end
 
 		end
-	end
 
+
+	end
 end

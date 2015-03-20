@@ -1,5 +1,7 @@
 ## Where is Williamsburg?
 
+- rake db:drop
+- rake db:create
 - rake db:seed
 - rake update_cities
 - rake geocode:all CLASS=City
