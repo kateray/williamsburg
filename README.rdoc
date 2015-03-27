@@ -19,6 +19,4 @@
 
 App
 - have load screen have all elements
-- most of the foursquare links are no good (too specific, and still not searching for neighborhood correctly)
-- landscape view
-- handle if it really can't find the neighborhood
+- Question: if you move wburg, should it really just take average? that might be so yucky. are there alternatives?
