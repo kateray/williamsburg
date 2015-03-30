@@ -2,10 +2,10 @@ class UserPinsController < ApplicationController
 
 	def add
 		#Authentication
-		if params[:aid] != ENV["APP_ID"]
-			render :json => {error: "Unauthenticated request"}, :status => :unprocessable_entity
-			return false
-		end
+		# if params[:aid] != ENV["APP_ID"]
+		# 	render :json => {error: "Unauthenticated request"}, :status => :unprocessable_entity
+		# 	return false
+		# end
 
 		device_id = params[:did]
 		lat = params[:lt].to_f
@@ -37,7 +37,10 @@ class UserPinsController < ApplicationController
 			end
 
 		else
+			puts 'no city found'
 			if city && neighborhood
+				puts city
+				puts neighborhood
 				@city = City.create(name: city, latitude: lat, longitude: long, neighborhood: neighborhood)
 				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id, neighborhood: neighborhood)
 				if @pin.save

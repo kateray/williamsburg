@@ -2,6 +2,7 @@
 
 - rake db:drop
 - rake db:create
+- rake db:migrate
 - rake db:seed
 - rake update_cities
 - rake geocode:all CLASS=City
@@ -20,3 +21,11 @@
 App
 - have load screen have all elements
 - Question: if you move wburg, should it really just take average? that might be so yucky. are there alternatives?
+
+
+Testing
+
+- test 4, 6 plus
+- test has no wburg
+- test agree
+- test disagree
