@@ -38,9 +38,10 @@ class UserPinsController < ApplicationController
 
 		else
 			puts 'no city found'
+			puts city
+			puts neighborhood
+			puts '*'*80
 			if city && neighborhood
-				puts city
-				puts neighborhood
 				@city = City.create(name: city, latitude: lat, longitude: long, neighborhood: neighborhood)
 				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id, neighborhood: neighborhood)
 				if @pin.save
