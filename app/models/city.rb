@@ -10,6 +10,7 @@ class City < ActiveRecord::Base
 		pin.longitude = long
 		if neighborhood
 			pin.neighborhood
+		end
 		return pin
 	end
 
