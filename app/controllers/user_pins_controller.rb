@@ -2,10 +2,10 @@ class UserPinsController < ApplicationController
 
 	def add
 		#Authentication
-		# if params[:aid] != ENV["APP_ID"]
-		# 	render :json => {error: "Unauthenticated request"}, :status => :unprocessable_entity
-		# 	return false
-		# end
+		if params[:aid] != ENV["APP_ID"]
+			render :json => {error: "Unauthenticated request"}, :status => :unprocessable_entity
+			return false
+		end
 
 		device_id = params[:did]
 		lat = params[:lt].to_f
@@ -13,11 +13,11 @@ class UserPinsController < ApplicationController
 
 		@city = City.near([lat, long], 50).first
 
-		result = Geocoder.search(lat.to_s + ',' + long.to_s, :params => {"inclnb" => 1, "IncludeEntityTypes"=>"Neighborhood"}).first
+		result = Geocoder.search(lat.to_s + ',' + long.to_s).first
 
-		if result && result.city && result.data['address']
+		if result && result.city && result.neighborhood
 			city = result.city
-			neighborhood = result.data['address']['neighborhood']
+			neighborhood = result.neighborhood
 		end
 
 		if @city
