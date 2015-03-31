@@ -10,53 +10,36 @@ class UserPinsController < ApplicationController
 		device_id = params[:did]
 		lat = params[:lt].to_f
 		long = params[:lg].to_f
-
 		@city = City.near([lat, long], 50).first
+		should_calculate_location = false
 
-		result = Geocoder.search(lat.to_s + ',' + long.to_s).first
-
-		if result && result.city && result.neighborhood
-			city = result.city
-			neighborhood = result.neighborhood
-		end
-
-		if @city
-			@pin = @city.user_pins.find_by_token(device_id) || UserPin.create(token: device_id, city_id: @city.id)
-			if neighborhood
-				@pin.neighborhood = neighborhood
-			end
-			@pin.latitude = lat
-			@pin.longitude = long
-
-			if @pin.save
-				@city.calculate_location
-				head :ok
-			else
-				render json: {error: "Unable to save"}, :status => :unprocessable_entity
-				return false
-			end
-
+		# we are agreeing
+		if @city && @city.latitude == lat && @city.longitude == long
+			@pin = @city.create_or_return_pin(device_id, lat, long, @city.neighborhood)
 		else
-			puts 'no city found'
-			puts city
-			puts neighborhood
-			puts '*'*80
-			if city && neighborhood
-				@city = City.create(name: city, latitude: lat, longitude: long, neighborhood: neighborhood)
-				@pin = UserPin.create(token: device_id, latitude: lat, longitude: long, city_id: @city.id, neighborhood: neighborhood)
-				if @pin.save
-					head :ok
-				else
-					render json: {error: "Unable to save"}, :status => :unprocessable_entity
-					return false
-				end
+			#otherwise we must geocode
+			result = Geocoder.search(lat.to_s + ',' + long.to_s).first
+			puts '*'*80 + result.to_s
+			#the city exists
+			if @city
+				@pin = @city.create_or_return_pin(device_id, lat, long, result.neighborhood)
+				should_calculate_location = true
 			else
-				render json: {error: "Unable to save"}, :status => :unprocessable_entity
-				return false
+				@city = City.create(name: result.city, latitude: lat, longitude: long, neighborhood: result.neighborhood)
+				@pin = @city.create_or_return_pin(device_id, lat, long, result.neighborhood)
 			end
-
 		end
 
+		#now we attempt to save it
+		if @pin && @pin.save
+			if should_calculate_location
+				@city.calculate_location
+			end
+			head :ok
+		else
+			render json: {error: "Unable to save"}, :status => :unprocessable_entity
+			return false
+		end
 
 	end
 end

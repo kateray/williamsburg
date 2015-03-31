@@ -4,6 +4,15 @@ class City < ActiveRecord::Base
 
 	geocoded_by :address
 
+	def create_or_return_pin(device_id, lat, long, neighborhood)
+		pin = self.user_pins.find_by_token(device_id) || UserPin.create(token: device_id, city_id: self.id)
+		pin.latitude = lat
+		pin.longitude = long
+		if neighborhood
+			pin.neighborhood
+		return pin
+	end
+
 	def average_lat
 		UserPin.where(city_id: self.id).average(:latitude)
 	end
