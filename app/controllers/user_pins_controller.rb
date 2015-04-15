@@ -19,7 +19,6 @@ class UserPinsController < ApplicationController
 		else
 			#otherwise we must geocode
 			result = Geocoder.search(lat.to_s + ',' + long.to_s).first
-			puts '*'*80 + result.to_s
 			#the city exists
 			if @city
 				@pin = @city.create_or_return_pin(device_id, lat, long, result.neighborhood)

@@ -8,6 +8,8 @@ class City < ActiveRecord::Base
 		pin = self.user_pins.find_by_token(device_id) || UserPin.create(token: device_id, city_id: self.id)
 		pin.latitude = lat
 		pin.longitude = long
+		puts '*'*80
+		puts neighborhood
 		if neighborhood
 			pin.neighborhood
 		end

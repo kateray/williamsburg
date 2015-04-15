@@ -19,9 +19,8 @@
 - check to make sure user_points are not an outlier
 
 App
-- have load screen have all elements
 - Question: if you move wburg, should it really just take average? that might be so yucky. are there alternatives?
-
+- why isn't it saving city / neighborhood?
 
 Testing
 
