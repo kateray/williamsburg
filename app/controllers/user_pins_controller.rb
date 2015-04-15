@@ -21,7 +21,10 @@ class UserPinsController < ApplicationController
 			result = Geocoder.search(lat.to_s + ',' + long.to_s).first
 			#the city exists
 			puts '*'*80
-			puts 'the returned neighborhood is ' + result.neighborhood
+			if result.neighborhood.blank?
+				puts 'indeed it is blank'
+				Airbrake.notify_or_ignore( error_message: "Didn't save neighborhood", error_class: "Custom::GeoCoding::NoNeighborhood", parameters: { geocoded_result: result.to_json } )
+			end
 			if @city
 				@pin = @city.create_or_return_pin(device_id, lat, long, result.neighborhood)
 				should_calculate_location = true
