@@ -11,7 +11,7 @@ class City < ActiveRecord::Base
 		puts '*'*80
 		puts neighborhood
 		if neighborhood
-			pin.neighborhood
+			pin.neighborhood = neighborhood
 		end
 		puts pin.to_json
 		return pin
