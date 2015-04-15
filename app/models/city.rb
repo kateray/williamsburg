@@ -13,8 +13,8 @@ class City < ActiveRecord::Base
 		if neighborhood
 			pin.neighborhood
 		end
-		return pin
 		puts pin.to_json
+		return pin
 	end
 
 	def average_lat
