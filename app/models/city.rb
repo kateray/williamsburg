@@ -14,6 +14,7 @@ class City < ActiveRecord::Base
 			pin.neighborhood
 		end
 		return pin
+		puts pin.to_json
 	end
 
 	def average_lat
