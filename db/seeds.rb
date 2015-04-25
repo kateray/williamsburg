@@ -72,8 +72,7 @@ City.create(name: 'Tulsa')
 City.create(name: 'Providence')
 City.create(name: 'Burlington')
 
-
-AdminPin.create(city_id: 1, neighborhood: 'Williamsburg', latitude: 40.7133, longitude: -73.9533)
+AdminPin.create(city_id: 1, neighborhood: 'Bushwick', latitude: 40.706411, longitude: -73.922709)
 AdminPin.create(city_id: 2, neighborhood: 'Kreuzberg', latitude: 52.4875, longitude: 13.3833)
 AdminPin.create(city_id: 3, neighborhood: 'Shoreditch', latitude: 51.5260, longitude: 0.0780)
 AdminPin.create(city_id: 4, neighborhood: 'Fitzroy', latitude: -37.8011, longitude: 144.9789)
