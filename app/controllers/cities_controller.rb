@@ -12,7 +12,7 @@ class CitiesController < ApplicationController
 		if @city
 			render json: @city.as_json
 		else
-			#alert me
+      render :text => "404 Not found", :status => 404
 		end
 	end
 
