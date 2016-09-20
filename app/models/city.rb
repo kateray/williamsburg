@@ -4,6 +4,11 @@ class City < ActiveRecord::Base
 
 	geocoded_by :address
 
+  def save_country
+    result = Geocoder.search(self.latitude.to_s + ',' + self.longitude.to_s).first
+    self.update_attribute('country', result.country)
+  end
+
 	def create_or_return_pin(device_id, lat, long, neighborhood)
 		pin = self.user_pins.find_by_token(device_id) || UserPin.create(token: device_id, city_id: self.id)
 		pin.latitude = lat

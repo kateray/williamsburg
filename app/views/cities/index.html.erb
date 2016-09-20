@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>#</th>
+    <th>city name</th>
+    <th>neighborhood name</th>
+    <th>lat</th>
+    <th>long</th>
+  </tr>
+  <% @cities.all.each_with_index do |city, i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= city.name %></td>
+      <td><%= city.neighborhood %></td>
+      <td><%= city.latitude %></td>
+      <td><%= city.longitude %></td>
+    </tr>
+  <% end %>
+</table>

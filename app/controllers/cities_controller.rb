@@ -1,5 +1,9 @@
 class CitiesController < ApplicationController
 
+  def index
+    @cities = City.where(country: 'United States')
+  end
+
 	def home
 	end
 

@@ -1,0 +1,59 @@
+<div id="map" data-cities="<%=@cities.to_json%>" data-pins="<%=@pins.to_json%>" ></div>
+<style>
+  #map {
+    width: 100%;
+    height: 600px;
+  }
+</style>
+
+<script>
+  function initMap() {
+    var mapDiv = document.getElementById('map');
+    var map = new google.maps.Map(mapDiv, {
+      center: {lat: 44.540, lng: -78.546},
+      zoom: 8
+    });
+    var cities = $('#map').data('cities');
+    cities.forEach(function(city){
+      var latLng = new google.maps.LatLng(city.latitude,city.longitude);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+      });
+    })
+    var pins = $('#map').data('pins');
+    pins.forEach(function(pin){
+      var circle ={
+          path: google.maps.SymbolPath.CIRCLE,
+          fillColor: 'red',
+          fillOpacity: .4,
+          scale: 4.5,
+          strokeColor: 'white',
+          strokeWeight: 1
+      };
+      var latLng = new google.maps.LatLng(pin.latitude,pin.longitude);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map,
+        icon: circle
+      });
+    })
+  //   function getPoints() {
+  //     var points = [];
+  //     pins.forEach(function(pin){
+  //       var latLng = new google.maps.LatLng(pin.latitude,pin.longitude);
+  //       points.push(latLng)
+  //     })
+  //     return points;
+  //   }
+  //   var heatmap = new google.maps.visualization.HeatmapLayer({
+  //    data: getPoints(),
+  //    map: map
+  //  });
+  //  heatmap.set('radius', 20);
+  }
+</script>
+<script async defer src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPMTBegS_87RC5YX0rrTbWVBqp9o9VINk&libraries=visualization&callback=initMap">
+</script>
