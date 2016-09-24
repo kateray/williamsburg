@@ -1,3 +1,4 @@
 Geocoder.configure(
-:lookup => :google
+  :lookup => :nominatim,
+  :http_headers => { "User-Agent" => "email=email@kateray.net" }
 )
