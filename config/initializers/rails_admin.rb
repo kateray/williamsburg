@@ -27,6 +27,7 @@ RailsAdmin.config do |config|
       field :id
       field :city
       field :city_name
+      field :town
       field :neighborhood
       field :suburb
       field :state

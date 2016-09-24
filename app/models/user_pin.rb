@@ -7,6 +7,7 @@ class UserPin < ActiveRecord::Base
     # TODO: rescue error?
     neighborhood = result.data['address']['neighbourhood']
     suburb = result.data['address']['suburb']
+    town = result.data['address']['town']
     city_name = result.data['address']['city']
     state = city = result.data['address']['state']
     country = city = result.data['address']['country']
