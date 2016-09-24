@@ -21,14 +21,12 @@ class City < ActiveRecord::Base
 		new_lat = self.average_lat
 		new_long = self.average_long
 
-		if new_lat && new_long
-			if (new_lat != self.latitude) || (new_long != self.longitude)
-				self.latitude = new_lat
-				self.longitude = new_long
-				self.neighborhood = new_neighborhood
-				puts "Saving #{self.name}"
-				self.save
-			end
+		if (new_lat != self.latitude) || (new_long != self.longitude)
+			self.latitude = new_lat
+			self.longitude = new_long
+			self.neighborhood = new_neighborhood
+			puts "Saving #{self.name}"
+			self.save
 		end
 	end
 

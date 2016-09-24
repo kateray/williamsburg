@@ -12,6 +12,13 @@ class UserPin < ActiveRecord::Base
     state = city = result.data['address']['state']
     country = city = result.data['address']['country']
     pin.update_attributes(neighborhood: neighborhood, suburb: suburb, town: town, city_name: city_name, state: state, country: country)
+    pin.set_used_fields
+  end
+
+  def set_used_fields
+    used_city = self.city_name || self.town
+    used_neighborhood = self.neighborhood || self.suburb
+    self.update_attributes(used_city: used_city, used_neighborhood: used_neighborhood)
   end
 
 end
