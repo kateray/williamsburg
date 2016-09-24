@@ -1,18 +1,17 @@
 <table>
   <tr>
-    <th>#</th>
+    <th>state</th>
     <th>city name</th>
-    <th>neighborhood name</th>
-    <th>lat</th>
-    <th>long</th>
+    <th>mode</th>
+    <th>pins</th>
   </tr>
-  <% @cities.all.each_with_index do |city, i| %>
+  <% @cities.each_with_index do |city, i| %>
+  <% mode = city.get_pin_mode %>
     <tr>
-      <td><%= i+1 %></td>
+      <td><%= city.state %></td>
       <td><%= city.name %></td>
-      <td><%= city.neighborhood %></td>
-      <td><%= city.latitude %></td>
-      <td><%= city.longitude %></td>
+      <td><%= mode %></td>
+      <td><%= city.user_pins.where(neighborhood: mode).count %></td>
     </tr>
   <% end %>
 </table>

@@ -1,7 +1,7 @@
 class CitiesController < ApplicationController
 
   def index
-    @cities = City.where(country: 'United States')
+    @cities = City.where(country: 'United States').where.not(neighborhood: '')
   end
 
 	def home
