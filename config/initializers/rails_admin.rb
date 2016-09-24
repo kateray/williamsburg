@@ -22,6 +22,20 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  config.model 'UserPin' do
+    list do
+      field :id
+      field :city
+      field :city_name
+      field :neighborhood
+      field :suburb
+      field :state
+      field :latitude
+      field :longitude
+      field :token
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

@@ -13,6 +13,10 @@
 - heroku run rake update_cities
 - heroku run rake geocode:all CLASS=City
 
+Run:
+- `redis-server`
+- `foreman start`
+
 ## Todo
 
 - make homepage

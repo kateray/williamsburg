@@ -12,3 +12,5 @@
 !/log/.keep
 /tmp
 /public
+.env
+dump.rdb
