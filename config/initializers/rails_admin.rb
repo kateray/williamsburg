@@ -25,7 +25,6 @@ RailsAdmin.config do |config|
   config.model 'UserPin' do
     list do
       field :id
-      field :city
       field :country
       field :city_name
       field :town
