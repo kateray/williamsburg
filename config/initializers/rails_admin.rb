@@ -24,15 +24,34 @@ RailsAdmin.config do |config|
 
   config.model 'UserPin' do
     list do
-      field :id
-      field :country
-      field :used_city
-      field :used_neighborhood
-      field :city_name
-      field :town
-      field :neighborhood
-      field :suburb
-      field :state
+      scopes [nil, :missing_neighborhood, :missing_city]
+      field :id do
+        column_width 50
+      end
+      field :country do
+        column_width 80
+      end
+      field :used_city do
+        column_width 120
+      end
+      field :used_neighborhood do
+        column_width 120
+      end
+      field :city_name do
+        column_width 100
+      end
+      field :town do
+        column_width 70
+      end
+      field :neighborhood do
+        column_width 120
+      end
+      field :suburb do
+        column_width 70
+      end
+      field :state do
+        column_width 50
+      end
       field :latitude
       field :longitude
       field :token

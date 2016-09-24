@@ -1,6 +1,6 @@
-<h3><%="Total Pins: #{UserPin.where.not(country:nil).count}"%></h3>
-<h3><%="Pins with no neighborhoods: #{UserPin.where.not(country:nil).where(used_neighborhood:nil).count}"%></h3>
-<h3><%="Pins with no cities: #{UserPin.where.not(country:nil).where(used_city:nil).count}"%></h3>
+<h3><%="Total Pins: #{UserPin.has_geocoded.count}"%></h3>
+<h3><%="Pins with no neighborhoods: #{UserPin.missing_neighborhood.count}"%></h3>
+<h3><%="Pins with no cities: #{UserPin.missing_city.count}"%></h3>
 <table>
   <tr>
     <th>city name</th>
