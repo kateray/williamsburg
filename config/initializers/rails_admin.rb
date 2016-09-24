@@ -24,7 +24,7 @@ RailsAdmin.config do |config|
 
   config.model 'UserPin' do
     list do
-      scopes [nil, :missing_neighborhood, :missing_city]
+      scopes [nil, :has_geocoded, :missing_neighborhood, :missing_city]
       field :id do
         column_width 50
       end
