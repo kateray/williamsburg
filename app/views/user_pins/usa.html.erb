@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>#</th>
+    <th>city name</th>
+    <th>neighborhood name</th>
+    <th>lat</th>
+    <th>long</th>
+  </tr>
+  <% @pins.all.each_with_index do |pin, i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= pin.city.name %></td>
+      <td><%= pin.neighborhood %></td>
+      <td><%= pin.latitude %></td>
+      <td><%= pin.longitude %></td>
+    </tr>
+  <% end %>
+</table>

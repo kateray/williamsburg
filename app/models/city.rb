@@ -4,6 +4,41 @@ class City < ActiveRecord::Base
 
 	geocoded_by :address
 
+  def save_country
+    result = Geocoder.search(self.latitude.to_s + ',' + self.longitude.to_s).first
+    self.update_attribute('country', result.country)
+  end
+
+  def save_state
+    result = Geocoder.search(self.latitude.to_s + ',' + self.longitude.to_s).first
+    self.update_attribute('state', result.state)
+  end
+
+  def mode(x)
+    sorted = x.sort
+    a = Array.new
+    b = Array.new
+    sorted.each do |x|
+      if a.index(x)==nil
+        a << x # Add to list of values
+        b << 1 # Add to list of frequencies
+      else
+        b[a.index(x)] += 1 # Increment existing counter
+      end
+    end
+    maxval = b.max           # Find highest count
+    where = b.index(maxval)  # Find index of highest count
+    a[where]                 # Find corresponding data value
+  end
+
+  def get_pin_mode
+    self.mode(self.user_pins.where.not(neighborhood: nil).pluck(:neighborhood))
+  end
+
+  def get_pin_nabes
+    self.user_pins.pluck(:neighborhood)
+  end
+
 	def create_or_return_pin(device_id, lat, long, neighborhood)
 		pin = self.user_pins.find_by_token(device_id) || UserPin.create(token: device_id, city_id: self.id)
 		pin.latitude = lat
@@ -24,6 +59,24 @@ class City < ActiveRecord::Base
 	def average_long
 		UserPin.where(city_id: self.id).average(:longitude)
 	end
+
+  def calculate_without_admin
+    new_lat = nil
+    new_long = nil
+    new_neighborhood = nil
+
+    new_lat = self.average_lat
+    new_long = self.average_long
+
+    if new_lat && new_long
+      if (new_lat != self.latitude) || (new_long != self.longitude)
+        self.latitude = new_lat
+        self.longitude = new_long
+        puts "Saving #{self.name}"
+        self.save
+      end
+    end
+  end
 
 	def calculate_location
 		new_lat = nil

@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>state</th>
+    <th>city name</th>
+    <th>mode</th>
+    <th>pins</th>
+  </tr>
+  <% @cities.each_with_index do |city, i| %>
+  <% mode = city.get_pin_mode %>
+    <tr>
+      <td><%= city.state %></td>
+      <td><%= city.name %></td>
+      <td><%= mode %></td>
+      <td><%= city.user_pins.where(neighborhood: mode).count %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,4 +1,12 @@
 class UserPinsController < ApplicationController
+  def usa
+    @pins = UserPin.where(country: 'United States')
+  end
+
+  def map
+    @cities = City.all
+    @pins = UserPin.all
+  end
 
 	def add
 		#Authentication
