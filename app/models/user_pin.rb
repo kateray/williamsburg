@@ -1,7 +1,7 @@
 class UserPin < ActiveRecord::Base
 	belongs_to :city
 
-  def self.calculate_location(pin_id)
+  def self.run_geocoder(pin_id)
     pin = self.find(pin_id)
     result = Geocoder.search("#{pin.latitude},#{pin.longitude}").first
     # TODO: rescue error?

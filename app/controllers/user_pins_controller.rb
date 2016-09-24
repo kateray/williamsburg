@@ -11,7 +11,7 @@ class UserPinsController < ApplicationController
 		lat = params[:lt].to_f
 		long = params[:lg].to_f
 		@city = City.near([lat, long], 50).first
-    should_calculate_location = false
+    should_geocode = false
 
     # user is agreeing with current pin. we do not need to geocode
     if @city && @city.latitude == lat && @city.longitude == long
@@ -31,12 +31,12 @@ class UserPinsController < ApplicationController
       @pin = @city.user_pins.find_by_token(device_id) || UserPin.create(token: device_id, city_id: @city.id)
       @pin.latitude = lat
       @pin.longitude = long
-      should_calculate_location = true
+      should_geocode = true
     end
 
 		#now we attempt to save it
 		if @pin && @pin.save
-			if should_calculate_location
+			if should_geocode
         GeocodeWorker.perform_async(@pin.id)
 			end
 			head :ok
