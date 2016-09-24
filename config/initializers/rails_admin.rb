@@ -26,6 +26,7 @@ RailsAdmin.config do |config|
     list do
       field :id
       field :city
+      field :country
       field :city_name
       field :town
       field :neighborhood
