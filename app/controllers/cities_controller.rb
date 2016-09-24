@@ -1,7 +1,12 @@
 class CitiesController < ApplicationController
+  http_basic_authenticate_with name: ENV['RAILS_ADMIN_USERNAME'], password: ENV['RAILS_ADMIN_PASSWORD'], only: :index
 
 	def home
 	end
+
+  def index
+    @cities = City.all
+  end
 
 	def get_williamsburg
 		lat = params[:lat].to_f

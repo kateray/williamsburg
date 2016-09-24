@@ -1,0 +1,22 @@
+<h3><%="Total Pins: #{UserPin.where.not(country:nil).count}"%></h3>
+<h3><%="Pins with no neighborhoods: #{UserPin.where.not(country:nil).where(used_neighborhood:nil).count}"%></h3>
+<h3><%="Pins with no cities: #{UserPin.where.not(country:nil).where(used_city:nil).count}"%></h3>
+<table>
+  <tr>
+    <th>city name</th>
+    <th>pins</th>
+    <th>mode</th>
+    <th>center</th>
+  </tr>
+  <%= render @cities %>
+</table>
+
+<style>
+  table {
+    width: 80%;
+    margin: center;
+  }
+  tr:nth-child(even) {
+    background-color: #EDEDED;
+  }
+</style>
