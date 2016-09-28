@@ -7,6 +7,7 @@ gem 'airbrake'
 
 gem 'sidekiq'
 gem 'sidekiq-throttler'
+gem 'sidetiq'
 
 gem 'rgeo-geojson'
 gem 'geocoder'
