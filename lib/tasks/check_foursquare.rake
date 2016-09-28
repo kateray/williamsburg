@@ -17,20 +17,12 @@ task :check_foursquare => :environment do
           pts << pt
         end
         nabe = Geokit::Polygon.new(pts)
-
-        UserPin.where.not(country: nil).where(used_neighborhood: nil).each do |pin|
+        UserPin.where.not(country: nil).where(quat_neighborhood: nil).each do |pin|
           geo_pin = Geokit::LatLng.new(pin.latitude, pin.longitude)
           if nabe.contains?(geo_pin)
             puts 'hooooray!'
             puts feature['properties']['name_local']
             pin.update_attributes(quat_neighborhood: feature['properties']['name'])
-          end
-        end
-        UserPin.where.not(country: nil).where(used_city: nil).each do |pin|
-          geo_pin = Geokit::LatLng.new(pin.latitude, pin.longitude)
-          if nabe.contains?(geo_pin)
-            puts 'hooooray!'
-            puts feature['properties']['name_adm2']
             pin.update_attributes(quat_city: feature['properties']['name_adm2'])
           end
         end
