@@ -1,6 +1,6 @@
 task :check_foursquare => :environment do
 
-  ['lib/assets/neighborhoods-1.geojson', 'lib/assets/neighborhoods-2.geojson', 'lib/assets/neighborhoods-3.geojson', 'lib/assets/neighborhoods-4.geojson', 'lib/assets/neighborhoods-5.geojson'].each do |f|
+  ['lib/assets/neighborhoods-0.geojson', 'lib/assets/neighborhoods-1.geojson', 'lib/assets/neighborhoods-2.geojson', 'lib/assets/neighborhoods-3.geojson', 'lib/assets/neighborhoods-4.geojson'].each do |f|
 
     puts "reading file #{f}"
 
