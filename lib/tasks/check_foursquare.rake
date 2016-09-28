@@ -3,7 +3,7 @@ task :check_foursquare => :environment do
   ['lib/assets/neighborhoods-1.geojson', 'lib/assets/neighborhoods-2.geojson', 'lib/assets/neighborhoods-3.geojson', 'lib/assets/neighborhoods-4.geojson', 'lib/assets/neighborhoods-5.geojson'].each do |f|
 
     puts "reading file #{f}"
-    
+
     file = File.read(f)
     data_hash = JSON.parse(file)
 
@@ -22,8 +22,16 @@ task :check_foursquare => :environment do
           geo_pin = Geokit::LatLng.new(pin.latitude, pin.longitude)
           if nabe.contains?(geo_pin)
             puts 'hooooray!'
-            puts feature['properties']['name']
+            puts feature['properties']['name_local']
             pin.update_attributes(quat_neighborhood: feature['properties']['name'])
+          end
+        end
+        UserPin.where.not(country: nil).where(used_city: nil).each do |pin|
+          geo_pin = Geokit::LatLng.new(pin.latitude, pin.longitude)
+          if nabe.contains?(geo_pin)
+            puts 'hooooray!'
+            puts feature['properties']['name_adm2']
+            pin.update_attributes(quat_city: feature['properties']['name_adm2'])
           end
         end
       rescue Exception => e
