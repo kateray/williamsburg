@@ -64,6 +64,7 @@ GEM
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
     geocoder (1.2.7)
+    geokit (1.10.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -153,6 +154,9 @@ GEM
       json (~> 1.4)
     redis (3.3.1)
     remotipart (1.2.1)
+    rgeo (0.5.3)
+    rgeo-geojson (0.4.3)
+      rgeo (~> 0.5)
     safe_yaml (1.0.4)
     sass (3.4.9)
     sass-rails (5.0.0)
@@ -207,6 +211,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   geocoder
+  geokit
   jbuilder (~> 2.0)
   jquery-rails
   newrelic_rpm
@@ -215,6 +220,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails_12factor
   rails_admin
+  rgeo-geojson
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq

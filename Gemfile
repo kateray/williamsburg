@@ -8,7 +8,9 @@ gem 'airbrake'
 gem 'sidekiq'
 gem 'sidekiq-throttler'
 
+gem 'rgeo-geojson'
 gem 'geocoder'
+gem 'geokit'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
