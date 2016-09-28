@@ -17,7 +17,7 @@ task :check_foursquare => :environment do
           pts << pt
         end
         nabe = Geokit::Polygon.new(pts)
-        UserPin.where.not(country: nil).where(quat_neighborhood: nil).each do |pin|
+        UserPin.where(quat_neighborhood: nil).each do |pin|
           geo_pin = Geokit::LatLng.new(pin.latitude, pin.longitude)
           if nabe.contains?(geo_pin)
             puts 'hooooray!'
