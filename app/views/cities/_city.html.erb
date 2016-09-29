@@ -1,12 +1,11 @@
 <tr>
   <td><%= city.name %></td>
   <td><%= city.user_pins.count %></td>
-  <% if mode = city.get_pin_mode %>
-    <% center = city.get_center %>
-    <% href = "http://maps.google.com/maps?z=10&t=m&q=loc:#{center[0]}+#{center[1]}" %>
-    <td><%= "#{mode} (#{city.get_pin_count})"%></td>
-    <td><a href= <%=href %> target="_blank">View</a></td>
+  <td><%= city.neighborhood %></td>
+  <% if city.neighborhood.blank? %>
+    <td />
   <% else %>
-    <td /><td />
+    <% href = "http://maps.google.com/maps?z=10&t=m&q=loc:#{city.latitude}+#{city.longitude}" %>
+    <td><a href= <%=href %> target="_blank">View</a></td>
   <% end %>
 </tr>
