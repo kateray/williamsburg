@@ -5,7 +5,18 @@ class CitiesController < ApplicationController
 	end
 
   def index
-    @cities = City.all
+    @cities = []
+    City.where(country: "United States of America").each do |c|
+      if @cities.select{|o| o.state == c.state}.any?
+        other = @cities.select{|o| o.state == c.state}.first
+        if c.get_pin_count > other.get_pin_count
+          @cities.delete(other)
+          @cities << c
+        end
+      else
+        @cities << c
+      end
+    end
   end
 
 	def get_williamsburg
