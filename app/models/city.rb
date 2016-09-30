@@ -51,7 +51,9 @@ class City < ActiveRecord::Base
 	def calculate_location
     neighborhood = self.get_pin_mode
     center = self.get_center(neighborhood)
-    self.update_attributes(neighborhood: neighborhood, latitude: center[0], longitude: center[1])
+    state = self.user_pins.where(used_neighborhood: neighborhood).first.state
+    country = self.user_pins.where(used_neighborhood: neighborhood).first.country
+    self.update_attributes(neighborhood: neighborhood, latitude: center[0], longitude: center[1], state: state, country: country)
 	end
 
 	def as_json(options={})
