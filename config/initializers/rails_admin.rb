@@ -28,8 +28,8 @@ RailsAdmin.config do |config|
       field :id do
         column_width 50
       end
-      field :country do
-        column_width 80
+      field :country_code do
+        column_width 50
       end
       field :used_city do
         column_width 120
