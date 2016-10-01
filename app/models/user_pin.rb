@@ -17,6 +17,11 @@ class UserPin < ActiveRecord::Base
     country = result.data['address']['country']
     country_code = result.data['address']['country_code']
     pin.update_attributes(neighborhood: neighborhood, suburb: suburb, town: town, city_name: city_name, state: state, country: country, country_code: country_code)
+    if country_code == 'us'
+      if pin.check_bushwick == true
+        pin.update_attributes(override_neighborhood: 'Bushwick')
+      end
+    end
     pin.set_used_fields
   end
 
