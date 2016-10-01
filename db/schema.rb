@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928161320) do
+ActiveRecord::Schema.define(version: 20161001193317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160928161320) do
     t.string   "quat_city"
     t.string   "quat_neighborhood"
     t.string   "override_neighborhood"
+    t.string   "country_code"
   end
 
 end
