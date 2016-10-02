@@ -21,6 +21,7 @@ class UserPinsController < ApplicationController
       @pin.neighborhood = @city.neighborhood
       @pin.city_name = @city.name
       @pin.state = @city.state
+      @pin.country_code = @city.country_code
       @pin.country = @city.country
 
     else
