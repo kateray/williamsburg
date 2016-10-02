@@ -39,7 +39,10 @@ class UserPinsController < ApplicationController
 		if @pin && @pin.save
 			if should_geocode
         GeocodeWorker.perform_async(@pin.id)
-			end
+			else
+        # necessary for saving the agreement pins
+        @pin.set_used_fields
+      end
 			head :ok
 		else
       #TODO: better error handling
