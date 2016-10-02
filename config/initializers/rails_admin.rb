@@ -1,4 +1,5 @@
 RailsAdmin.config do |config|
+  config.default_items_per_page = 100
 
   ### Popular gems integration
 
@@ -24,21 +25,33 @@ RailsAdmin.config do |config|
 
   config.model 'UserPin' do
     list do
-      scopes [nil, :has_geocoded, :missing_neighborhood, :missing_city]
+      scopes [nil, :missing_neighborhood, :missing_city]
       field :id do
         column_width 50
       end
       field :country_code do
-        column_width 50
+        label "cntry"
+        column_width 20
+      end
+      field :state do
+        column_width 80
       end
       field :used_city do
-        column_width 120
+        label "city"
+        column_width 110
       end
       field :used_neighborhood do
-        column_width 120
+        label "neighborhood"
+        column_width 110
+      end
+      field :latitude do
+        column_width 90
+      end
+      field :longitude do
+        column_width 90
       end
       field :city_name do
-        column_width 100
+        column_width 80
       end
       field :town do
         column_width 70
@@ -49,11 +62,6 @@ RailsAdmin.config do |config|
       field :suburb do
         column_width 70
       end
-      field :state do
-        column_width 50
-      end
-      field :latitude
-      field :longitude
       field :token
     end
   end

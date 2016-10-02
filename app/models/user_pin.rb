@@ -1,9 +1,8 @@
 class UserPin < ActiveRecord::Base
 	belongs_to :city
 
-  scope :has_geocoded, -> { where.not(country: nil) }
-  scope :missing_neighborhood, -> { where.not(country: nil).where(used_neighborhood: nil) }
-  scope :missing_city, -> { where.not(country: nil).where(used_city: nil) }
+  scope :missing_neighborhood, -> { where(used_neighborhood: nil) }
+  scope :missing_city, -> { where(used_city: nil) }
 
   def self.run_geocoder(pin_id)
     pin = self.find(pin_id)
