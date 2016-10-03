@@ -21,8 +21,10 @@ class QuattroWorker
           if nabe.contains?(geo_pin)
             puts 'hooooray!'
             puts feature['properties']['name_local']
-            pin.update_attributes(quat_neighborhood: feature['properties']['name'], quat_city: feature['properties']['name_adm2'])
+            pin.update_attributes(quat_neighborhood: feature['properties']['name'], quat_city: feature['properties']['name_adm2'], checked_quattro: true)
             pin.set_used_fields
+          else
+            pin.update_attributes(checked_quattro: true)
           end
         end
       rescue Exception => e
@@ -34,7 +36,7 @@ class QuattroWorker
   end
 
   def perform
-    pins = UserPin.where('used_city IS ? OR quat_neighborhood IS ?',nil,nil).group_by(&:country_code)
+    pins = UserPin.where(checked_quattro: false).group_by(&:country_code)
 
     pins.each do |country|
       if country[0] == 'us'

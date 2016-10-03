@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002034556) do
+ActiveRecord::Schema.define(version: 20161003141250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20161002034556) do
     t.string   "token"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "country"
     t.string   "state"
     t.string   "city_name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20161002034556) do
     t.string   "quat_neighborhood"
     t.string   "override_neighborhood"
     t.string   "country_code"
+    t.boolean  "checked_quattro",       default: false
   end
 
 end
