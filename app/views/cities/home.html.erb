@@ -1,47 +1,20 @@
-<style>
-#iframe-container {
-	position: absolute;
-	z-index: 5;
-}
-#overlay {
-	position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  background-color: #001C59;
-}
-#title {
-	position: absolute;
-	font-family: 'Helvetica', 'Arial', sans-serif;
-	font-size: 70px;
-	font-weight: bold;
-	color: #fff;
-	top: 20%;
-	left: 20%;
-	width: 300px;
-	z-index: 15;
-}
-#sub {
-	position: absolute;
-	font-family: 'Helvetica', 'Arial', sans-serif;
-	font-size: 40px;
-	font-weight: bold;
-	color: #fff;
-	top: 50%;
-	left: 20%;
-	width: 300px;
-	z-index: 15;
-}
-#iphone-outline {
-	position: absolute;
-	top: 10%;
-	right: 20%;
-	z-index: 15;
-}
-</style>
-<div id="title">Where Is Williamsburg?</div>
-<div id="sub">Get it on the <a href="https://itunes.apple.com/us/app/where-is-williamsburg/id989835126?ls=1&mt=8">App Store</a></div>
-<div id="overlay"></div>
-<%= image_tag("iphone_6.png", id: "iphone-outline") %>
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<% end %>
+
+<div id="map-container"></div>
+<div id="tools-container">
+  <div class="info-container">
+    <div class="info" id="title">Where is Williamsburg?</div>
+    <div class="info" id="description">An app that helps you find the "Williamsburg" of your city. <a href="https://itunes.apple.com/us/app/where-is-williamsburg/id989835126?mt=8" target="_blank">Get it on the app store.</a></div>
+  </div>
+  <br />
+  <div class="info-container" id="search">Look up a city: <input /></div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    initMap(<%= raw @nyc_data %>)
+  })
+</script>
