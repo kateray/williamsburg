@@ -14,6 +14,11 @@ class CitiesController < ApplicationController
     @cities = City.all
   end
 
+  def search
+    @cities = City.search_by_name(params[:query])
+    render json: @cities.select('name, latitude, longitude').map{|c| {name: c.name, lat: c.latitude, lng: c.longitude}}
+  end
+
   def get_williamsburg
   lat = params[:lat].to_f
   long = params[:long].to_f

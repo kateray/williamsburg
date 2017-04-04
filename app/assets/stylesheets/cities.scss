@@ -6,6 +6,7 @@ html {
 }
 
 body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0px;
   margin: 0px;
   min-height: 100%;
@@ -24,7 +25,6 @@ input:focus {outline:0;}
 }
 
 #tools-container {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
   position: absolute;
   z-index: 1000;
@@ -38,6 +38,10 @@ input:focus {outline:0;}
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
   margin-bottom: 10px;
+
+  &.search-container {
+    line-height: 25px;
+  }
 }
 
 .info {
@@ -54,11 +58,42 @@ input:focus {outline:0;}
   float: left;
 }
 
-#search input {
+#author {
+  font-size: 12px;
+  z-index: 1000;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.twitter-typeahead {
+  .tt-menu {
+    background-color: rgba(0, 0, 0, 0.7);
+    margin-left: 4px;
+    width: 160px;
+  }
+  .tt-suggestion {
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 1);
+    }
+  }
+  .empty-message {
+    padding: 10px;
+  }
+}
+
+.twitter-typeahead input {
   font-size: 14px;
   color: #fff;
   margin: 0px 5px;
   padding: 3px 5px;
   border: 1px solid #fff;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#search {
+  background-color: rgba(0, 0, 0, 0.5);
 }

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/all', to: 'cities#get_all'
 
   get '/cities', to: 'cities#index'
-
+  get 'search/:query' => 'cities#search'
 
   root to: 'cities#home'
 end
