@@ -1,6 +1,6 @@
 var App = {};
 
-function initMap(data){
+function initMap(data, city){
   var baseLayer = L.tileLayer( 'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia3JheSIsImEiOiJjaXoxZmdyZ3gwMDE1MnFvZG9oZmhrMTBsIn0.mvcEq1pLdeOv-xUSGn6sVw' );
 
   var cfg = {
@@ -17,7 +17,7 @@ function initMap(data){
 
   App.map = new L.Map('map-container', {
     attributionControl: false,
-    center: new L.LatLng(40.734583, -73.997263),
+    center: new L.LatLng(city.lat, city.lng),
     zoomControl: false,
     zoom: 13,
     layers: [baseLayer, heatmapLayer]
@@ -44,15 +44,17 @@ jQuery(document).ready(function($){
   });
   bloodhound.initialize();
 
-  $('#search').typeahead(null, {
-    display: 'value',
+  $('#search').typeahead({minLength: 0}, {
+    displayKey: 'value',
     source: bloodhound.ttAdapter(),
     templates: {
-      empty: [
-        '<div class="empty-message">',
-          "we don't have that city",
-        '</div>'
-      ].join('\n'),
+      notFound: function (data) {
+        return [
+          '<div class="empty-message">',
+            "we don't have that city",
+          '</div>'
+        ].join('\n')
+      },
       suggestion: function (data) {
         return '<div>' + data.name + '</div>';
       }
@@ -61,5 +63,6 @@ jQuery(document).ready(function($){
 
   $('#search').bind('typeahead:selected', function(event, datum, name) {
     App.map.setView(new L.LatLng(datum.lat, datum.lng), 13)
+    $('#search').blur()
   });
 })
