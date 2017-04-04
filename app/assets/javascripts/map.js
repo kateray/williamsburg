@@ -24,7 +24,7 @@ function initMap(data, city){
   });
 
   L.control.zoom({
-    position:'topright'
+    position:'bottomleft'
   }).addTo(App.map);
 
   heatmapLayer.setData({max: 10, data: data});
