@@ -38,6 +38,7 @@ input:focus {outline:0;}
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
   margin-bottom: 10px;
+  width: 693px;
 
   &.search-container {
     line-height: 25px;
@@ -56,6 +57,17 @@ input:focus {outline:0;}
 #description {
   max-width: 350px;
   float: left;
+}
+
+.hidden-description {
+  display: none;
+  line-height: 1.5;
+  padding-top: 10px;
+  clear: both;
+}
+
+.hidden-description.open {
+  display: block;
 }
 
 #author {
